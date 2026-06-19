@@ -12,7 +12,7 @@ $result = mysqli_query($connection, $query);
     <title>Missions | INTERSTELLAR</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body> 
 
     <div class="star-field"></div>
 
