@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $astronaut_registration_ready = true;
 
     if (!empty($_FILES["image"]["name"])) {
-        $max_image_size = 1024 * 1024; // 1 MB
+        $max_image_size = 1024 * 1024; 
 
         if ($_FILES["image"]["size"] > $max_image_size) {
             $message = "The mission image must be smaller than 1 MB.";
