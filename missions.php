@@ -24,7 +24,7 @@ $result = mysqli_query($connection, $query);
     <main class="command-panel">
 
         <section class="navigation-card">
-            <a href="create_mission.php" class="space-link">Register New Mission</a>
+            <a href="index.php" class="space-link">Register New Mission</a>
         </section>
 
         <section class="mission-grid">

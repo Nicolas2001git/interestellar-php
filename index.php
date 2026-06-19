@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <p class="message"><?php echo $message; ?></p>
             <?php endif; ?>
 
-            <form action="create_mission.php" method="POST" enctype="multipart/form-data" class="mission-form">
+            <form action="index.php" method="POST" enctype="multipart/form-data" class="mission-form">
 
                 <label for="astronaut_name">Astronaut Name</label>
                 <input type="text" id="astronaut_name" name="astronaut_name" placeholder="Example: Cooper"required>
