@@ -10,28 +10,38 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $mission_description = mysqli_real_escape_string($connection, $_POST["mission_description"]);
 
     $image_name = "";
+    $astronaut_registration_ready = true;
 
     if (!empty($_FILES["image"]["name"])) {
-        $image_name = time() . "_" . basename($_FILES["image"]["name"]);
-        $image_tmp = $_FILES["image"]["tmp_name"];
-        $upload_path = "uploads/" . $image_name;
+        $max_image_size = 1024 * 1024; // 1 MB
 
-        if (!is_dir("uploads")) {
-            mkdir("uploads", 0777, true);
+        if ($_FILES["image"]["size"] > $max_image_size) {
+            $message = "The mission image must be smaller than 1 MB.";
+            $astronaut_registration_ready = false;
+        } else {
+            $image_name = time() . "_" . basename($_FILES["image"]["name"]);
+            $image_tmp = $_FILES["image"]["tmp_name"];
+            $upload_path = "uploads/" . $image_name;
+
+            if (!is_dir("uploads")) {
+                mkdir("uploads", 0777, true);
+            }
+
+            move_uploaded_file($image_tmp, $upload_path);
         }
-
-        move_uploaded_file($image_tmp, $upload_path);
     }
 
-    $query = "INSERT INTO missions 
-    (astronaut_name, planet, mission_type, mission_description, image)
-    VALUES 
-    ('$astronaut_name', '$planet', '$mission_type', '$mission_description', '$image_name')";
+    if ($astronaut_registration_ready) {
+        $query = "INSERT INTO missions 
+        (astronaut_name, planet, mission_type, mission_description, image)
+        VALUES 
+        ('$astronaut_name', '$planet', '$mission_type', '$mission_description', '$image_name')";
 
-    if (mysqli_query($connection, $query)) {
-        $message = "Mission registered successfully.";
-    } else {
-        $message = "Error registering the mission.";
+        if (mysqli_query($connection, $query)) {
+            $message = "Mission registered successfully.";
+        } else {
+            $message = "Error registering the mission.";
+        }
     }
 }
 ?>
