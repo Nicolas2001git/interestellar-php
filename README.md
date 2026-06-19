@@ -6,6 +6,8 @@ The project is inspired by the atmosphere of *Interstellar*, deep space explorat
 
 Each mission includes important information such as the astronaut name, destination, mission type, mission description, optional image, and automatic registration date.
 
+---
+
 ## 🚀 Live Demo
 
 🌐 **Website:**
@@ -18,8 +20,10 @@ https://interestellar-data.infinityfreeapp.com
 * Create new space missions.
 * Store mission information in a MySQL database.
 * Upload an optional image for each mission.
+* Validate uploaded images with a maximum size of **1 MB**.
 * View all registered missions on a separate page.
 * Delete missions from the database.
+* Remove the uploaded image when a mission is deleted.
 * Display the creation date automatically.
 * Use a responsive and cinematic space-inspired interface.
 
@@ -47,7 +51,6 @@ interestellar-php/
 ├── missions.php
 ├── delete_mission.php
 ├── styles.css
-├── riveira_nicolas.sql
 └── uploads/
 ```
 
@@ -61,6 +64,8 @@ This is the main page of the application.
 It contains the form used to register a new space mission.
 
 The user can enter the astronaut name, planet or destination, mission type, mission description, and upload an optional image.
+
+The uploaded image must be smaller than **1 MB**. If the image is larger than the allowed size, the mission is not registered and an error message is displayed.
 
 ### `missions.php`
 
@@ -80,10 +85,6 @@ The interface uses dark colors, warm tones, soft lights, and a cinematic space a
 ### `connection.example.php`
 
 This file shows an example of how the database connection should be configured.
-
-### `riveira_nicolas.sql`
-
-This file contains the SQL structure needed to create the database and the `missions` table.
 
 ---
 
@@ -105,15 +106,31 @@ The table stores the following information:
 
 ---
 
+## 🖼️ Image Uploads
+
+Mission images are stored inside the `uploads/` folder.
+
+The application does not save the image file inside the database.
+Instead, it saves the image filename in the database and displays the image from the `uploads/` folder.
+
+Allowed image size:
+
+```text
+Maximum image size: 1 MB
+```
+
+---
+
 ## 💻 How to Run Locally
 
 1. Install **XAMPP**.
 2. Start **Apache** and **MySQL**.
 3. Place the project folder inside the `htdocs` directory.
 4. Open **phpMyAdmin**.
-5. Import the `riveira_nicolas.sql` file.
-6. Configure the database connection.
-7. Open the project in the browser.
+5. Create a MySQL database.
+6. Create the `missions` table.
+7. Configure the database connection.
+8. Open the project in the browser.
 
 Example local URL:
 
@@ -126,6 +143,7 @@ http://localhost/interestellar-php/
 ## 🌠 Project Idea
 
 Interestellar PHP was created as a small digital control center for fictional space missions.
+
 The goal is to combine a simple PHP and MySQL structure with a visual style inspired by space, exploration, and cinematic science fiction.
 
 ---
