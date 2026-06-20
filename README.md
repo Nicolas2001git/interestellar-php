@@ -11,7 +11,8 @@ Each mission includes important information such as the astronaut name, destinat
 ## 🚀 Live Demo
 
 🌐 **Website:**
-https://interestellar-data.infinityfreeapp.com
+https://interestellar-database.infinityfreeapp.com/
+
 
 ---
 
